@@ -1,0 +1,25 @@
+.toolbar {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    background-color: #1976d2;
+    color: white;
+    font-weight: 600;
+    font-size: large;
+    z-index: 1000;
+}
+
+.toolbar a {
+    margin: 0 40px;
+    text-decoration: none;
+    color: white;
+}
+
+.toolbar a:hover {
+    cursor: pointer;
+}
