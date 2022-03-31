@@ -1,0 +1,114 @@
+<div class="posts-wrap">
+  <div>
+    <div class="search">
+      <span> Title </span>
+      <input
+        #search
+        id="search"
+        type="text"
+        class="form-control"
+        placeholder="Search"
+        aria-label="Search"
+        aria-describedby="basic-addon1"
+      />
+    </div>
+    <div class="search">
+      <span> Body </span>
+      <input
+        #search
+        id="search"
+        type="text"
+        class="form-control"
+        placeholder="Search"
+        aria-label="Search"
+        aria-describedby="basic-addon1"
+      />
+    </div>
+  </div>
+  <ngx-datatable
+    [rows]="postsList"
+    class="material"
+    [headerHeight]="50"
+    [footerHeight]="50"
+    [rowHeight]="70"
+    rowHeight="auto"
+    [reorderable]="reorderable"
+    [count]="totalElements"
+    [loadingIndicator]="isLoading"
+    [limit]="10"
+    [sorts]="[{ prop: 'id', dir: 'desc' }]"
+  >
+    <ngx-datatable-column
+      name="ID"
+      prop="id"
+      [width]="100"
+      [cellClass]="'custom-cell'"
+    >
+      <ng-template ngx-datatable-cell-template let-value="value">
+        {{ value }}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column
+      name="User ID"
+      prop="userId"
+      [width]="100"
+      [cellClass]="'custom-cell'"
+      [sortable]="false"
+    >
+      <ng-template ngx-datatable-cell-template let-value="value">
+        {{ value }}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column
+      name="Title"
+      prop="title"
+      [width]="400"
+      [cellClass]="'custom-cell'"
+      [sortable]="false"
+    >
+      <ng-template ngx-datatable-cell-template let-value="value">
+        {{ value }}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column
+      name="Body"
+      prop="body"
+      [width]="400"
+      [cellClass]="'custom-cell'"
+      [sortable]="false"
+    >
+      <ng-template ngx-datatable-cell-template let-value="value">
+        {{ value }}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column
+      name="Action"
+      [width]="150"
+      [cellClass]="'custom-cell'"
+      [sortable]="false"
+    >
+      <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
+        <button
+          mat-mini-fab
+          color="primary"
+          class="custom-button"
+          (click)="onShowDetail(row)"
+        >
+          <mat-icon class="primary-icon">info</mat-icon>
+        </button>
+        <button
+          mat-mini-fab
+          color="warn"
+          class="custom-button"
+          (click)="onDelete(row)"
+        >
+          <mat-icon class="warn-icon">delete</mat-icon>
+        </button>
+      </ng-template>
+    </ngx-datatable-column>
+  </ngx-datatable>
+  <!-- <div class="post" *ngFor="let item of postsList">
+        <h2> {{ item.title }} </h2>
+        <p> {{ item.body }} </p>
+    </div> -->
+</div>

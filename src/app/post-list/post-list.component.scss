@@ -1,0 +1,35 @@
+.posts-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.custom-cell {
+  .datatable-body-cell-label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.custom-button {
+  margin-right: 10px !important;
+}
+
+.primary-icon {
+  color: #3f51b5;
+}
+
+.warn-icon {
+  color: #f44336;
+}
+
+.search {
+  height: 20px;
+  width: 250px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
