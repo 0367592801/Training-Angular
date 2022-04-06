@@ -1,8 +1,9 @@
 import { Component, Input, OnChanges, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
-import { Post } from '../post';
-import { PostsService } from '../posts.service';
+import { Post } from '../interfaces/post';
+import { PostsService } from '../services/posts.service';
 import { ViewEncapsulation } from '@angular/core';
 import { filter } from 'rxjs';
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-post-list',
@@ -22,10 +23,13 @@ export class PostListComponent implements OnInit {
   reorderable = true;
   isLoading: boolean = true;
 
-  constructor(private post: PostsService) {}
+  constructor(
+    private post: PostsService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    this.post.getPosts().subscribe((data) => {
+    this.post.getPostsList().subscribe((data) => {
       this.postsList = [...data];
       this.rows = [...data];
       this.isLoading = false;
@@ -37,7 +41,7 @@ export class PostListComponent implements OnInit {
   }
 
   onShowDetail(selected: Post) {
-    console.log('Detail Post: ', selected);
+    this.router.navigate([`/post/${selected.id}`]);
   }
 
   onSearchTitleChange(searchTitle: string) {
@@ -50,7 +54,7 @@ export class PostListComponent implements OnInit {
   
   onSearch() {
     this.isLoading = true;
-    this.post.getPosts().subscribe((data) => {
+    this.post.getPostsList().subscribe((data) => {
       this.postsList = [...data];
     });
     if (this.searchTitle) {

@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      username: ['', [Validators.required]],
+      username: ['', [Validators.required, Validators.email]],
       password: [
         '',
         [Validators.required, Validators.minLength(8), Validators.required],
@@ -40,9 +40,9 @@ export class LoginComponent implements OnInit {
         password: this.loginForm.value.password,
       };
       this.authService.login(loginInfo).subscribe((data: any) => {
-        console.log(data);
         localStorage.setItem('isLoggedIn', 'true');
         localStorage.setItem('token', JSON.stringify(data.token));
+        localStorage.setItem('user', JSON.stringify(data));
         this.authService.getLoggedInStatus.emit(true);
         Swal.fire({
           icon: 'success',
