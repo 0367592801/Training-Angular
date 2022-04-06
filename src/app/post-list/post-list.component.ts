@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
 import { Post } from '../post';
 import { PostsService } from '../posts.service';
 import { ViewEncapsulation } from '@angular/core';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-post-list',
@@ -11,20 +12,25 @@ import { ViewEncapsulation } from '@angular/core';
 })
 export class PostListComponent implements OnInit {
 
+  searchTitle: string = "";
+  searchBody: string = "";
+
   public postsList: Array<Post> | undefined = [];
+  rows: Array<Post> = [];
   totalElements = 10;
   pageNumber = 1;
   reorderable = true;
   isLoading: boolean = true;
 
-  constructor(private post: PostsService) {
+  constructor(private post: PostsService) {}
+
+  ngOnInit(): void {
     this.post.getPosts().subscribe((data) => {
       this.postsList = [...data];
+      this.rows = [...data];
       this.isLoading = false;
     });
   }
-
-  ngOnInit(): void {}
 
   onDelete(selected: Post) {
     console.log('Delete Post: ', selected);
@@ -32,5 +38,32 @@ export class PostListComponent implements OnInit {
 
   onShowDetail(selected: Post) {
     console.log('Detail Post: ', selected);
+  }
+
+  onSearchTitleChange(searchTitle: string) {
+    this.searchTitle = searchTitle;
+  }
+
+  onSearchBodyChange(searchBody: string) {
+    this.searchBody = searchBody;
+  }
+  
+  onSearch() {
+    this.isLoading = true;
+    this.post.getPosts().subscribe((data) => {
+      this.postsList = [...data];
+    });
+    if (this.searchTitle) {
+      this.rows = [...this.postsList?.filter((value) => {
+        return value.title.includes(this.searchTitle);
+      }) || []]
+    }
+
+    if (this.searchBody) {
+      this.rows = [...this.postsList?.filter((value) => {
+        return value.body.includes(this.searchBody);
+      }) || []]
+    }
+    this.isLoading = false;
   }
 }

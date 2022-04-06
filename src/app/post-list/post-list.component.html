@@ -1,32 +1,35 @@
 <div class="posts-wrap">
-  <div>
+  <div style="margin-bottom: 20px">
     <div class="search">
       <span> Title </span>
       <input
-        #search
-        id="search"
+        [(ngModel)]="searchTitle"
+        (ngModelChange)="onSearchTitleChange($event)"
+        id="searchTitle"
         type="text"
-        class="form-control"
-        placeholder="Search"
-        aria-label="Search"
-        aria-describedby="basic-addon1"
+        class="input-search"
+        placeholder="Search Title"
       />
     </div>
     <div class="search">
       <span> Body </span>
       <input
         #search
-        id="search"
+        [(ngModel)]="searchBody"
+        (ngModelChange)="onSearchBodyChange($event)"
+        id="searchBody"
         type="text"
-        class="form-control"
-        placeholder="Search"
-        aria-label="Search"
-        aria-describedby="basic-addon1"
+        class="input-search"
+        placeholder="Search Body"
       />
+    </div>
+    <div class="actions-wrap">
+      <button (click)="onSearch()" class="button-4" role="button">Search</button>
     </div>
   </div>
   <ngx-datatable
-    [rows]="postsList"
+    *ngIf="postsList"
+    [rows]="rows"
     class="material"
     [headerHeight]="50"
     [footerHeight]="50"
@@ -36,7 +39,7 @@
     [count]="totalElements"
     [loadingIndicator]="isLoading"
     [limit]="10"
-    [sorts]="[{ prop: 'id', dir: 'desc' }]"
+    [sorts]="[{ prop: 'id' }]"
   >
     <ngx-datatable-column
       name="ID"
@@ -94,7 +97,7 @@
           class="custom-button"
           (click)="onShowDetail(row)"
         >
-          <mat-icon class="primary-icon">info</mat-icon>
+          <mat-icon>info</mat-icon>
         </button>
         <button
           mat-mini-fab
@@ -102,7 +105,7 @@
           class="custom-button"
           (click)="onDelete(row)"
         >
-          <mat-icon class="warn-icon">delete</mat-icon>
+          <mat-icon>delete</mat-icon>
         </button>
       </ng-template>
     </ngx-datatable-column>

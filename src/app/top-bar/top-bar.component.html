@@ -1,8 +1,9 @@
-<div class="toolbar" role="banner">
+<div class="toolbar" role="banner" *ngIf="!isLoginPage">
     <nav>
         <a [routerLink]="['/home']">Home</a>
         <a [routerLink]="['/post']">Post</a>
-        <a [routerLink]="['/user-profile']">Profile</a>
-        <a [routerLink]="['/login']">Login</a>
+        <a [routerLink]="['/user-profile']" *ngIf="isLoggedIn">Profile</a>
+        <a [routerLink]="['/login']" *ngIf="!isLoggedIn">Login</a>
+        <a [routerLink]="['/login']" *ngIf="isLoggedIn">Logout</a>
     </nav>
 </div>

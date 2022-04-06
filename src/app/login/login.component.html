@@ -1,1 +1,25 @@
-<p>login works!</p>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<body>
+	<section class="login">
+		<div class="login_box">
+			<div class="left">
+				<div class="top_link"><a href="/home"><img src="https://drive.google.com/u/0/uc?id=16U__U5dJdaTfNGobB_OpwAJ73vM50rPV&export=download" alt="">Return home</a></div>
+				<div class="contact">
+					<form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+						<h3>SIGN IN</h3>
+						<input type="text" placeholder="USERNAME" formControlName="username">
+						<input type="password" placeholder="PASSWORD" formControlName="password">
+                        <h4 style="color: rgba(255, 60, 60, 0.774)">{{ message }}</h4>
+						<button class="submit" type="submit">LET'S GO</button>
+					</form>
+				</div>
+			</div>
+			<div class="right">
+				<div class="right-text">
+					<h2>ANGULAR TRAINING</h2>
+					<h5>MINHPHANT</h5>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
