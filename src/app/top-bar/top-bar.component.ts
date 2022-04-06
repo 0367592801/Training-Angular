@@ -12,11 +12,14 @@ import { NavigationStart, Router } from '@angular/router';
 export class TopBarComponent implements OnInit {
   isLoggedIn: boolean = false;
   isLoginPage: boolean = false;
+  userId: string = '';
 
   constructor(private authService: AuthService, private router: Router) {
     authService.getLoggedInStatus.subscribe((value) => {
       this.isLoggedIn = value;
     });
+    this.isLoggedIn = authService.isLoggedIn;
+    this.userId = JSON.parse(localStorage.getItem('user') ?? '')?.userId;
   }
 
   ngOnInit(): void {
@@ -26,6 +29,9 @@ export class TopBarComponent implements OnInit {
           this.isLoginPage = true;
         } else {
           this.isLoginPage = false;
+        }
+        if (event.url === '/') {
+          this.router.navigate(['/home']);
         }
       }
     });

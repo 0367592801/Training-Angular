@@ -8,10 +8,6 @@ import { Router } from "@angular/router";
 })
 export class AppComponent {
 
-  constructor(private router: Router) {
-    if(router.url === "/") {
-      router.navigate(['/home']);
-    }
-  }
+  constructor(private router: Router) { }
   title = 'tranining-angular';
 }
