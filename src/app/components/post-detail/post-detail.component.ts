@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Post } from '../interfaces/post';
-import { User } from '../interfaces/user';
-import { PostsService } from '../services/posts.service';
-import { AuthService } from '../services/auth.service';
+import { Post } from '../../model/post';
+import { User } from '../../model/user';
+import { PostsService } from '../../services/posts.service';
+import { AuthService } from '../../services/auth.service';
 import { firstValueFrom } from 'rxjs';
 
 @Component({

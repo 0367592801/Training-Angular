@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
@@ -45,9 +45,12 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('user', JSON.stringify(data));
         this.authService.getLoggedInStatus.emit(true);
         Swal.fire({
+          position: 'top-end',
           icon: 'success',
           title: 'Welcome!!',
-          footer: 'Have a nice trip!'
+          footer: 'Have a nice trip!',
+          showConfirmButton: false,
+          timer: 2000
         })
         this.router.navigate(['/home']);
       });

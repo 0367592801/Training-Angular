@@ -23,23 +23,23 @@
         placeholder="Search Body"
       />
     </div>
-    <div class="actions-wrap">
-      <button (click)="onSearch()" class="button-4" role="button">Search</button>
-    </div>
   </div>
   <ngx-datatable
+    #postsTable
     *ngIf="postsList"
     [rows]="rows"
     class="material"
     [headerHeight]="50"
     [footerHeight]="50"
     [rowHeight]="70"
-    rowHeight="auto"
     [reorderable]="reorderable"
-    [count]="totalElements"
     [loadingIndicator]="isLoading"
-    [limit]="10"
     [sorts]="[{ prop: 'id' }]"
+    [externalPaging]="true"
+    [count]="page.totalElements"
+    [offset]="page.pageNumber"
+    [limit]="page.size"
+    (page)="setPage($event, filteredPost)"
   >
     <ngx-datatable-column
       name="ID"

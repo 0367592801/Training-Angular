@@ -1,7 +1,8 @@
 import { EventEmitter, Injectable, Output } from '@angular/core';
-import { Login } from '../interfaces/login';
+import { Login } from '../model/login';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { User } from '../interfaces/user';
+import { User } from '../model/user';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -23,7 +24,7 @@ export class AuthService {
     return this.http.get('https://60dff0ba6b689e001788c858.mockapi.io/tokens');
   }
 
-  getUser(userId: number) {
+  getUser(userId: number):Observable<User> {
     return this.http.get<User>(`https://60dff0ba6b689e001788c858.mockapi.io/users/${userId}`);
   }
 }
