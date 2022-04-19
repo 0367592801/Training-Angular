@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<title>SIGN IN</title>
 <body>
 	<section class="login">
 		<div class="login_box">
@@ -7,8 +8,8 @@
 				<div class="contact">
 					<form [formGroup]="loginForm" (ngSubmit)="onLogin()">
 						<h3>SIGN IN</h3>
-						<input type="text" placeholder="EMAIL" formControlName="username">
-						<input type="password" placeholder="PASSWORD" formControlName="password">
+						<input id="username" type="text" placeholder="EMAIL" formControlName="username">
+						<input id="password" type="password" placeholder="PASSWORD" formControlName="password">
                         <h4 style="color: rgba(255, 60, 60, 0.774)">{{ message }}</h4>
 						<button class="submit" type="submit">LET'S GO</button>
 					</form>

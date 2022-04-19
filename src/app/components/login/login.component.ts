@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
 
   message: string = '';
   loginForm!: FormGroup;
+  title:string = 'SIGN IN';
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({

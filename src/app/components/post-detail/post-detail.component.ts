@@ -35,14 +35,11 @@ export class PostDetailComponent implements OnInit {
     if (this.post?.userId) {
       this.user = await firstValueFrom(this.authService.getUser(this.post?.userId));
     }
-    console.log(this.user);
   }
 
   async getPost() {
     if (this.postId)
       this.post = await firstValueFrom(this.postsService.getPost(this.postId));
-    console.log(this.post);
-
     this.getUser();
   }
 }
